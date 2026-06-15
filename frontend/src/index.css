@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vv-bg: #f8fafc;
+  --vv-surface: rgba(255, 255, 255, 0.85);
+  --vv-surface-muted: rgba(255, 255, 255, 0.5);
+  --vv-border: rgba(226, 232, 240, 0.7);
+  --vv-muted: #64748b;
+  --vv-text: #334155;
+  --vv-heading: #0f172a;
+  --vv-accent: #6366f1;
+  --vv-accent-dim: #818cf8;
+  --vv-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+}
+
+.dark {
+  --vv-bg: #0a192f;
+  --vv-surface: rgba(17, 34, 64, 0.8);
+  --vv-surface-muted: rgba(29, 53, 87, 0.5);
+  --vv-border: rgba(45, 84, 136, 0.5);
+  --vv-muted: #8892b0;
+  --vv-text: #cbd5e1;
+  --vv-heading: #ffffff;
+  --vv-accent: #2dd4bf;
+  --vv-accent-dim: #14b8a6;
+  --vv-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes vv-shine {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+
+  100% {
+    transform: translateX(220%) skewX(-12deg);
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  @apply bg-vv-bg text-vv-text antialiased transition-colors duration-500 min-h-screen relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(45, 212, 191, 0.12) 0px, transparent 50%);
+  transition: background-image 0.5s ease;
+  pointer-events: none;
+}
+
+.dark body::before {
+  background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(45, 212, 191, 0.05) 0px, transparent 50%);
+}
+
+/* Leaflet z-index below modals */
+.leaflet-container {
+  z-index: 0;
+}
